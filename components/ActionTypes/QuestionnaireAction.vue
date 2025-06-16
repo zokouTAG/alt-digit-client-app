@@ -10,7 +10,7 @@
             :placeholder="question.placeholder || ''"></b-form-input>
 
           <!-- Field Type: LongText -->
-          <b-form-textarea v-else-if="question.type === 'LongText'" :id="question.variable"
+          <b-form-textarea v-else-if="question.type === 'Long Text'" :id="question.variable"
             v-model="formData[question.variable]" rows="4" :required="question.isRequired"
             :placeholder="question.placeholder || ''"></b-form-textarea>
 
@@ -30,7 +30,7 @@
             ]" :required="question.isRequired"></b-form-select>
 
           <!-- Field Type: MultiSelect -->
-          <b-form-select v-else-if="question.type === 'MultiSelect'" :id="question.variable"
+          <b-form-select v-else-if="question.type === 'Multi Select'" :id="question.variable"
             v-model="formData[question.variable]" :options="question.options?.map(opt => ({
               value: opt.value,
               text: opt.text
@@ -59,7 +59,7 @@ interface Question {
   question: string
   variable: string
   description?: string
-  type: 'Text' | 'LongText' | 'Number' | 'Select' | 'MultiSelect' | 'Date'
+  type: 'Text' | 'Long Text' | 'Number' | 'Select' | 'Multi Select' | 'Date'
   isRequired: boolean
   placeholder?: string
   options?: Option[]
