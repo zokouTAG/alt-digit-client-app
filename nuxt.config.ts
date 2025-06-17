@@ -7,14 +7,14 @@ export default defineNuxtConfig({
       linkActiveClass: 'active'
     }
   },
-  nitro: {
-    storage: {
-      redis: {
-        driver: 'redis',
-        // Connexion Redis pour SSR cache
-      }
-    }
-  },
+  // nitro: {
+  //   storage: {
+  //     redis: {
+  //       driver: 'redis',
+  //       // Connexion Redis pour SSR cache
+  //     }
+  //   }
+  // },
   routeRules: {
     '/': { redirect: '/dashboards/analytics' }
   },

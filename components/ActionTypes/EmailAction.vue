@@ -1,3 +1,49 @@
+<script setup lang="ts">
+import { computed, ref } from 'vue';
+
+const props = defineProps<{
+  config: {
+    subject?: string
+    destinataires?: string[]
+    CC?: string[]
+    BCC?: string[]
+    body?: string
+  }
+  isLastAction: boolean
+}>()
+
+const emit = defineEmits<{
+  submit: [emailData: {
+    subject: string
+    destinataires: string[]
+    CC: string[]
+    BCC: string[]
+    body: string
+  }]
+}>()
+
+const emailData = ref({
+  subject: props.config?.subject || '',
+  destinataires: props.config?.destinataires || [],
+  CC: props.config?.CC || [],
+  BCC: props.config?.BCC || [],
+  body: props.config?.body || ''
+})
+
+const isEmailValid = computed(() => {
+  if (emailData.value.destinataires.length === 0) return false
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailData.value.destinataires.every(email => emailRegex.test(email))
+})
+
+const handleSubmit = () => {
+  if (isEmailValid.value) {
+    emit('submit', emailData.value)
+  }
+}
+</script>
+
+
 <template>
   <div>
     <h3 class="mb-4 text-center">Envoi d'email</h3>
@@ -60,48 +106,3 @@
     </b-form>
   </div>
 </template>
-
-<script setup lang="ts">
-import { computed, ref } from 'vue';
-
-const props = defineProps<{
-  config: {
-    subject?: string
-    destinataires?: string[]
-    CC?: string[]
-    BCC?: string[]
-    body?: string
-  }
-  isLastAction: boolean
-}>()
-
-const emit = defineEmits<{
-  submit: [emailData: {
-    subject: string
-    destinataires: string[]
-    CC: string[]
-    BCC: string[]
-    body: string
-  }]
-}>()
-
-const emailData = ref({
-  subject: props.config?.subject || '',
-  destinataires: props.config?.destinataires || [],
-  CC: props.config?.CC || [],
-  BCC: props.config?.BCC || [],
-  body: props.config?.body || ''
-})
-
-const isEmailValid = computed(() => {
-  if (emailData.value.destinataires.length === 0) return false
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  return emailData.value.destinataires.every(email => emailRegex.test(email))
-})
-
-const handleSubmit = () => {
-  if (isEmailValid.value) {
-    emit('submit', emailData.value)
-  }
-}
-</script>

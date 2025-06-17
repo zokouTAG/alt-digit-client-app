@@ -1,14 +1,3 @@
-<template>
-  <component
-    :is="currentActionComponent"
-    ref="actionComponent"
-    :config="action.config"
-    :isLastAction="isLastAction"
-    @submit="handleActionSubmit"
-    @validationChange="handleValidationChange"
-  />
-</template>
-
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import type { ActionType } from '~/helpers/constants'
@@ -74,3 +63,15 @@ const handleValidationChange = (isValid: boolean) => {
   emit('validationChange', isValid)
 }
 </script>
+
+<template>
+  <component
+    :is="currentActionComponent"
+    ref="actionComponent"
+    :config="action.config"
+    :isLastAction="isLastAction"
+    @submit="handleActionSubmit"
+    @validationChange="handleValidationChange"
+  />
+</template>
+
