@@ -22,14 +22,4 @@ export default defineNuxtConfig({
     baseURL: '/rizz_nuxt/'
   },
   ignore: ['pages/**/**/**/components/*'],
-  plugins: [
-    { src: '~/plugins/apexcharts', mode: 'client' },
-    { src: '~/plugins/justgage', mode: 'client' },
-    { src: '~/plugins/toastui', mode: 'client' },
-    { src: '~/plugins/apexcharts', mode: 'client' },
-    { src: '~/plugins/jquery', mode: 'client' },
-    { src: '~/plugins/jsvectormap', mode: 'client' },
-    { src: '~/plugins/leaflet', mode: 'client' },
-    { src: '~/plugins/huebee', mode: 'client' }
-  ]
 })
